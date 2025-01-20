@@ -8,4 +8,4 @@ select transaction_id from transactions
 where account_id in (select account_id from accounts where customer_id = 100);
 
 select account_id from accounts
-where balance = (select max(balance) from accounts);
+where (customer_id, balance) in (select customer_id, max(balance) from accounts group by customer_id);
